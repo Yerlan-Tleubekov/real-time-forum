@@ -1,5 +1,0 @@
-{
-  "addr": ":8080",
-  "database": "sqlite3",
-  "databasePath": "./assets/db/real-time-forum.db"
-}
