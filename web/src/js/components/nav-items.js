@@ -15,12 +15,13 @@ import { createElementObj } from "../utils/create"
       </form>
     </div> */}
 
-const liCreator = (names) => {
-    return names.map((name) => {
+const liCreator = (navItems) => {
+    return navItems.map((navItem) => {
         const a = createElementObj({
             tagName: 'a',
-            classNames: 'nav-link',
-            textContent: name,
+            classNames: navItem.classNames,
+            textContent: navItem.name,
+            attrs: navItem.attrs
         })
 
         return createElementObj({
@@ -32,7 +33,7 @@ const liCreator = (names) => {
 
 }
 
-const NavItems = (...names) => {
+const NavItems = (navitems) => {
 
 
 
@@ -46,7 +47,7 @@ const NavItems = (...names) => {
         tagName: 'div',
         classNames: 'collapse navbar-collapse',
         attrs: [['id', 'navbarSupportedContent']],
-        children: liCreator(names)
+        children: liCreator(navitems)
     })
 
     return {

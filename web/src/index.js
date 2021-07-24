@@ -2,6 +2,7 @@ import './css/normalize.css'
 import { createElementObj } from "./js/utils/create"
 import { tagsOptions } from './js/utils/options'
 import Header from './js/components/header'
+import AuthModal from './js/pages/auth'
 
 
 
@@ -14,9 +15,14 @@ function MainLayout() {
     return {
         init: () => {
             layout.append(header, main, footer)
-        
+
+            const authModal = AuthModal("Authorization")
             const componentHeader = Header()
+            
             componentHeader.init()
+            authModal.init()
+
+
         }
     }
 }
