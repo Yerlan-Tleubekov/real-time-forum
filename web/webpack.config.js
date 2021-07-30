@@ -92,12 +92,12 @@ const plugins = () => {
     }),
     new CopyWebpackPlugin({
       patterns: [
+        // {
+        //   from: './assets/img',
+        //   to: 'assets/img',
+        // },
         {
-          from: './assets/img',
-          to: 'assets/img',
-        },
-        {
-          from: '../favicon',
+          from: '../favicon.ico',
           to: 'favicon',
         },
       ],

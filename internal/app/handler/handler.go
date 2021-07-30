@@ -1,8 +1,9 @@
 package handler
 
 import (
-	"github.com/Yerlan-Tleubekov/real-time-forum/backend/internal/app/server"
 	"net/http"
+
+	"github.com/Yerlan-Tleubekov/real-time-forum/backend/internal/app/server"
 
 	"github.com/Yerlan-Tleubekov/real-time-forum/backend/internal/app/service"
 )
@@ -18,13 +19,13 @@ func NewHandler(services *service.Service) *Handler {
 
 func (h *Handler) InitHandler() *http.ServeMux {
 
+	fs := http.FileServer(http.Dir("./web/dist"))
+
 	contTypeJson := "application/json"
+
 	mux := http.NewServeMux()
 
-	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("hello!\n"))
-	})
-
+	mux.Handle("/", http.StripPrefix("/", fs))
 	mux.Handle("/auth/sign-up", server.Middlewares(h.SignUp(), []string{http.MethodPost, http.MethodOptions}, contTypeJson, false))
 	mux.Handle("/auth/sign-in", server.Middlewares(h.SignIn(), []string{http.MethodPost, http.MethodOptions}, contTypeJson, false))
 	mux.HandleFunc("/auth/logout", h.Logout)
